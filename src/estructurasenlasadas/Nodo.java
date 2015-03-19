@@ -7,11 +7,14 @@ public class Nodo <T> {
    private T elemento;
    private Nodo <T> siguiente;
    
-//constructor
+//constructores
    public Nodo(T elemento){
          this.elemento=elemento;
          siguiente=null;
     }
+   public Nodo(){
+       
+   }
    
  //gets y sets
    public Nodo<T> getSiguiente(){
@@ -21,5 +24,15 @@ public class Nodo <T> {
    public void setSiguiente(Nodo<T> siguiente){
        this.siguiente=siguiente;
    }
+   
+   
+ //toString
+   public String toString(){
+       StringBuilder sb=new StringBuilder();
+       sb.append("Elemento: "+elemento);
+       return sb.toString();
+     }
+   
+   
     
 }
