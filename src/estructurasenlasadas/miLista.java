@@ -1,6 +1,8 @@
 
 package estructurasenlasadas;
 
+import java.util.Stack;
+
 public class miLista<T> {
     Nodo <T> cabeza;
     int contador;
@@ -61,13 +63,20 @@ public class miLista<T> {
         Nodo<T> actual=cabeza;
         Nodo<T> pasado= cabeza;
     }
-    
-    
+       
     
   public void imprimeLista(){
       for(Nodo<T> i=cabeza;i.getSiguiente()!=null;i=i.getSiguiente())
           System.out.println(i);
   }  
+  
+  //recursivo
+  public void imprimeLista(Nodo<T> actual){
+      if(actual!=null){
+          System.out.print(actual.getElemento());
+          imprimeLista(actual.getSiguiente());
+      }
+  }
   
   //insertar i-esima posicion
   public void insertarIpos(int pos, T elem) throws Unchecked{
@@ -85,25 +94,98 @@ public class miLista<T> {
       
       
   }
-  
-  
+    
   
   //invertir lista(iterativo y recursivo)
   public void invertirLista(){
-      for(Nodo<T> i=cabeza; i.getSiguiente()!=null;i.getSiguiente())
-       null=cabeza;
-      cabeza =null;
+      Nodo<T> aux=cabeza.getSiguiente();
+      Stack<T> pila=new Stack();
+      while(aux!=null){
+          pila.push(aux.getElemento());
+          aux=aux.getSiguiente();
+      }
       
+      aux=cabeza.getSiguiente();
+      while(!pila.isEmpty()){
+          aux.setElemento(pila.pop());
+          aux=aux.getSiguiente();
+      }
+     
+  }
+  
+ //recursivo
+  public Nodo<T> invertirListaR(Nodo<T> actual){
+      if(actual!=null){
+          
+     Nodo<T> temp=invertirListaR(actual.getSiguiente()); 
+      temp.setSiguiente(actual);
+      actual.setSiguiente(null);
+      }
+      else{
+          cabeza.setSiguiente(actual);
+      }
+      return actual;
   }
   
   //elimina elemetos repetidos
- public String borraTodos(Nodo<T> elem) throws Unchecked{
-     while()
+ /*public void borraTodos(Nodo<T> elem){
+     boolean aux=buscar(elem);
+     if(aux==true);
+        aux=buscar(elem);
+     while(aux==true){
+        borrar(elem);
+        aux=buscar(elem);
+      }
+ }
+ */
+  
+ //borrar todos clase
+ public void borrarRep(){
+     Nodo<T> actual=cabeza.getSiguiente();
+     T elem=actual.getElemento();
      
-     return elem.toString();
+     while(actual.getSiguiente()!=null){
+         Nodo<T>aux=actual.getSiguiente();
+         elem=actual.getElemento();
+         Nodo<T> anterior=actual;
+         while(aux!=null){
+             if(aux.getElemento()==elem){
+                 anterior.setSiguiente(aux.getSiguiente());
+                 int cont--;
+                 anterior=anterior.getSiguiente();
+              }
+             else 
+                 anterior=aux;
+             aux=aux.getSiguiente();
+         }
+     }
+     
+     
+     
+ }
+ 
+ //busca elemento
+ public boolean buscar(Nodo<T> elem){
+     Nodo<T> actual=cabeza.getSiguiente();
+     while(actual!=elem)
+        actual=actual.getSiguiente();
+     if(actual==null){
+         return false;
+     }
+         return true;
  }
  
  public static void main(String[] args){
+     miLista <Integer> lista=new miLista();
+     
+     lista.cabeza();
+     lista.insertaFinal(3);
+     lista.insertaFinal(2);
+     lista.insertaFinal(1);
+     
+     lista.imprimeLista(cabeza.getSiguiente());
+     lista.invertirListaR(int.cabeza.getSiguiente());
+     
      
  }
     

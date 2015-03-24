@@ -32,7 +32,14 @@ public class Nodo <T> {
        sb.append("Elemento: "+elemento);
        return sb.toString();
      }
-   
+
+    public T getElemento() {
+        return elemento;
+    }
+    
+    public void setElemento(T elemento){
+            this.elemento=elemento;
+         }
    
     
 }
