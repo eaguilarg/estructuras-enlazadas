@@ -66,6 +66,9 @@ public class miLista<T> {
        
     
   public void imprimeLista(){
+      i=cabeza.getSiguiente();
+      while(i.getSiguiente()!=null)
+           i
       for(Nodo<T> i=cabeza;i.getSiguiente()!=null;i=i.getSiguiente())
           System.out.println(i);
   }  
